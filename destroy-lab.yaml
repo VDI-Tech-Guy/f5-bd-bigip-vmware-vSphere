@@ -4,8 +4,8 @@
   connection: local
   gather_facts: false
   vars_files:
-    - /git/vars/vmc/vault.yml
-    - /git/vars/vmc/deployment.yml
+    - vars/vault.yml
+    - vars/deployment.yml
   roles:
     - roles/vSphere-Roles/destroy_dyn_group_f5_vms
 
@@ -14,8 +14,8 @@
   connection: local
   gather_facts: false
   vars_files:
-    - /git/vars/vmc/vault.yml
-    - /git/vars/vmc/deployment.yml
+    - vars/vault.yml
+    - vars/deployment.yml
   roles:
     - roles/F5-Roles/bigiq_unlicense
 
@@ -24,9 +24,9 @@
   connection: local
   gather_facts: false
   vars_files:
-    - /git/vars/vmc/vault.yml
-    - /git/vars/vmc/deployment.yml
+    - vars/vault.yml
+    - vars/deployment.yml
   roles:
     - roles/vSphere-Roles/destroy_f5_vms
-    # - roles/vSphere-Roles/destroy_f5_master_vms
-    # - roles/vSphere-Roles/destroy_resource_pool
+    - roles/vSphere-Roles/destroy_f5_master_vms
+    - roles/vSphere-Roles/destroy_resource_pool

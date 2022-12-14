@@ -12,8 +12,8 @@
   connection: local
   gather_facts: true
   vars_files:
-    - /git/vars/development/vault.yml
-    - /git/vars/development/Onprem/deployment.yml
+    - vars/vault.yml
+    - vars/deployment.yml
   roles:
     - roles/F5-Roles/date_time
     - roles/vSphere-Roles/create_resource_pool
@@ -24,8 +24,8 @@
   connection: local
   gather_facts: true
   vars_files:
-    - /git/vars/development/vault.yml
-    - /git/vars/development/Onprem/deployment.yml
+    - vars/vault.yml
+    - vars/deployment.yml
   roles:
     - roles/vSphere-Roles/prep_f5_linked_clone
     - roles/vSphere-Roles/clone_f5_vm
@@ -36,8 +36,8 @@
   connection: local
   gather_facts: false
   vars_files:
-    - /git/vars/development/vault.yml
-    - /git/vars/development/Onprem/deployment.yml
+    - vars/vault.yml
+    - vars/deployment.yml
   roles:
     - roles/F5-Roles/wait_for_bigip_startup
     - roles/F5-Roles/install_as3
