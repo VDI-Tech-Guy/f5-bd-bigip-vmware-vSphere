@@ -3,6 +3,10 @@
 
   - name: Get the existing resource pools
     vmware.vmware_rest.vcenter_resourcepool_info:
+      vcenter_hostname: "{{ vcenter_hostname }}"
+      vcenter_username: "{{ vcenter_username }}"
+      vcenter_password: "{{ vcenter_password }}"
+      vcenter_validate_certs: "{{ vcenter_validate_certs }}"
     register: resource_pools
 
   - name: Create an Ad hoc resource pool
