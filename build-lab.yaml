@@ -17,7 +17,7 @@
   roles:
     # - roles/F5-Roles/date_time
     - roles/vSphere-Roles/create_resource_pool
-    - roles/vSphere-Roles/deploy_f5_ova
+    # - roles/vSphere-Roles/deploy_f5_ova
 
 # # Build F5 VMs
 # - hosts: localhost
