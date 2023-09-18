@@ -1,16 +1,38 @@
 ---
 # tasks file for Create-Resource-Pool
 
-  - name: Add Resource Pool to vCenter
-    vmware_resource_pool:
-      hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
-      validate_certs: "{{ vcenter_validate_certs }}"
-      datacenter: "{{ datacenter_name }}"
-      cluster: "{{ cluster_name }}"
-      resource_pool: "{{resource_pool_name}}"
-      state: present
-    delegate_to: localhost
+  - name: Get the existing resource pools
+    vmware.vmware_rest.vcenter_resourcepool_info:
+    register: resource_pools
+
+  - name: Create an Ad hoc resource pool
+    vmware.vmware_rest.vcenter_resourcepool:
+      name: "{{resource_pool_name}}"
+      parent: '{{ resource_pools.value[0].resource_pool }}'
+      cpu_allocation:
+        expandable_reservation: true
+        limit: 40
+        reservation: 0
+        shares:
+          level: NORMAL
+      memory_allocation:
+        expandable_reservation: false
+        limit: 2000
+        reservation: 0
+        shares:
+          level: NORMAL
+    register: my_resource_pool
+
+  # - name: Add Resource Pool to vCenter
+  #   vmware.vmware_rest.vcenter_resourcepool:
+  #     hostname: "{{ vcenter_hostname }}"
+  #     username: "{{ vcenter_username }}"
+  #     password: "{{ vcenter_password }}"
+  #     validate_certs: "{{ vcenter_validate_certs }}"
+  #     datacenter: "{{ datacenter_name }}"
+  #     cluster: "{{ cluster_name }}"
+  #     resource_pool: "{{resource_pool_name}}"
+  #     state: present
+  #   delegate_to: localhost
 
 
