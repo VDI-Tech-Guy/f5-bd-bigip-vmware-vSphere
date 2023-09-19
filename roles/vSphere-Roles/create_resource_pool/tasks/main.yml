@@ -25,8 +25,8 @@
       name: "{{resource_pool_name}}"
       parent: '{{ item.resource_pool }}'
     register: my_resource_pool
-    when: item.resource_pool.name == "Resources"
-    with_items: resource_pools.value
+    when: item.name == "Resources"
+    with_items: "{{ resource_pools.value }}"
 
   # - name: Add Resource Pool to vCenter
   #   vmware.vmware_rest.vcenter_resourcepool:
