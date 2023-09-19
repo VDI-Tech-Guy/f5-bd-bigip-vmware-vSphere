@@ -14,7 +14,7 @@
 
   - debug:
       var: item
-    with_items: resource_pools.value      
+    with_items: "{{ resource_pools.value }}"
 
   - name: Create an Ad hoc resource pool
     vmware.vmware_rest.vcenter_resourcepool:
