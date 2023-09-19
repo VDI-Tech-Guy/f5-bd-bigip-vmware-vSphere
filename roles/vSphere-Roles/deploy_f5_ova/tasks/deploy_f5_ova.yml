@@ -9,7 +9,7 @@
       cluster: "{{ cluster_name }}"
       datastore: "{{ datastore }}"
       resource_pool: "{{resource_pool_name}}"
-      validate_certs: no
+      validate_certs: "{{ vcenter_validate_certs }}"
       name: "{{vm_hostname}}{{ ova_builds_var.tmpl_name }}-TMPL"
       networks: "{u'Management':u'{{ Management_Network }}', u'Internal':u'{{ Internal_Network }}', u'External':u'{{ External_Network }}', u'HA':u'{{ HA_Network }}' }"
       power_on: no

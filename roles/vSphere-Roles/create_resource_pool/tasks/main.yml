@@ -19,20 +19,10 @@
       vcenter_password: "{{ vcenter_password }}"
       vcenter_validate_certs: "{{ vcenter_validate_certs }}"
       name: "{{resource_pool_name}}"
-      parent: '{{ resource_pools.value[0].resource_pool }}'
-      # cpu_allocation:
-      #   expandable_reservation: true
-      #   limit: 40
-      #   reservation: 0
-      #   shares:
-      #     level: NORMAL
-      # memory_allocation:
-      #   expandable_reservation: false
-      #   limit: 2000
-      #   reservation: 0
-      #   shares:
-      #     level: NORMAL
+      parent: '{{ item.resource_pool }}'
     register: my_resource_pool
+    when: item.resource_pool.name == "Resources"
+    with_items: resource_pools.value
 
   # - name: Add Resource Pool to vCenter
   #   vmware.vmware_rest.vcenter_resourcepool:
